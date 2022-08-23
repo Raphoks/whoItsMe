@@ -1,0 +1,26 @@
+.maleButton,.femaleButton{
+  border-radius: 50%;
+  border: 1px solid transparent;
+  &:focus{
+    border: 1px solid #555555;
+  }
+}
+
+.maleButton{
+  background: #D7EEFF; 
+}
+
+.femaleButton{
+  background: #FEE8EC;
+}
+
+.disabledButton{
+  filter: grayscale(40%);
+  opacity: 0.7;
+  transition: all 0.2ms;
+
+  &:hover{
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+}

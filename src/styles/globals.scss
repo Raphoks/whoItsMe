@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap&family=Roboto:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --light-blue: #E7FEFF;
+  --rose: #ffe4e1;
+  --white: #ffffff;
+  --black: #333333;
+  --font-title: 'Rouge Script', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --text-body: #4d4d4d;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  @media (max-width: 1080px) {
+    font-size: 93.75%;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 87.5%;
+  }
+}
+
+body,
+p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+}
+
+button {
+  outline: transparent solid 2px;
+  border: 1px solid transparent;
+  transition: all 0.4s;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
