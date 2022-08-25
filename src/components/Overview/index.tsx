@@ -1,16 +1,34 @@
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
+interface OverviewProps {
+  guesses: {
+    male: {
+      count: number;
+      names: string[];
+    };
+    female: {
+      count: number;
+      names: string[];
+    };
+  };
+}
+
 import styles from './styles.module.scss';
-export default function Overview() {
+export default function Overview({ guesses }: OverviewProps) {
   ChartJS.register(ArcElement, Tooltip, Legend);
+
+  const totalGuesses = guesses.male.count + guesses.female.count;
+
+  const malePercentage = (guesses.male.count * 100) / totalGuesses;
+  const femalePercentage = (guesses.female.count * 100) / totalGuesses;
 
   const data = {
     labels: ['Vicente', 'Clara'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19],
+        data: [guesses.male.count, guesses.female.count],
         backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
         borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
         borderWidth: 1,
@@ -19,7 +37,7 @@ export default function Overview() {
   };
   return (
     <div className={styles.container}>
-      <h2>Resultado</h2>
+      <h2>Resultado parcial</h2>
       <div className={styles.chart}>
         <Pie data={data} />
       </div>
@@ -27,39 +45,23 @@ export default function Overview() {
       <div className={styles.list}>
         <div className={styles.title}>
           <h2>
-            Vicente <span>(10%)</span>
+            Vicente <span>({Math.trunc(malePercentage)}%)</span>
           </h2>
           <h2>
-            Clara <span>(40%)</span>
+            Clara <span>({Math.trunc(femalePercentage)}%)</span>
           </h2>
         </div>
         <div className={styles.containerList}>
           <ul className={styles.listBoy}>
-            <li>Cleiton Osti da Silva</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
-            <li>Cleiton</li>
+            {guesses.male.names.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
           </ul>
 
           <ul className={styles.listGirl}>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
-            <li>Viluma</li>
+            {guesses.female.names.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
           </ul>
         </div>
       </div>

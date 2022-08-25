@@ -3,13 +3,9 @@ import { collection, addDoc } from 'firebase/firestore';
 import { database } from '../../../services/firebase';
 import GenderButton from '../GenderButton';
 import Swal from 'sweetalert2';
+import { Gender } from '../../enums/gender.enum';
 
 import styles from './styles.module.scss';
-
-enum Gender {
-  MALE = 'male',
-  FEMALE = 'female',
-}
 
 interface GuessFormProps {
   viewResult: () => void;
