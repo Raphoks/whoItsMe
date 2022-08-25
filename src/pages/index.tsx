@@ -1,12 +1,20 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import { useState } from 'react';
 import { Background } from '../components/Background';
 import { Container } from '../components/Container';
 import GuessForm from '../components/GuessForm';
+import Overview from '../components/Overview';
 
 import styles from './home.module.scss';
 
 export default function Home() {
+  const [viewResult, setViewResult] = useState(false);
+
+  function handleResultClick() {
+    setViewResult(true);
+  }
+  console.log(viewResult);
+
   return (
     <>
       <Head>
@@ -26,7 +34,11 @@ export default function Home() {
               </h1>
             </section>
 
-            <GuessForm />
+            {!viewResult ? (
+              <GuessForm viewResult={handleResultClick} />
+            ) : (
+              <Overview />
+            )}
           </div>
         </Container>
       </main>

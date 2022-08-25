@@ -11,7 +11,11 @@ enum Gender {
   FEMALE = 'female',
 }
 
-export default function GuessForm() {
+interface GuessFormProps {
+  viewResult: () => void;
+}
+
+export default function GuessForm({ viewResult }: GuessFormProps) {
   const [name, setName] = useState('');
   const [gender, setGender] = useState<Gender>();
 
@@ -33,6 +37,7 @@ export default function GuessForm() {
       icon: 'success',
       confirmButtonColor: '#38AEE6',
     });
+    viewResult();
   }
 
   const isMale = gender === Gender.MALE;
@@ -75,7 +80,11 @@ export default function GuessForm() {
         >
           Enviar palpite
         </button>
-        <button type="button" className={styles.resultButton}>
+        <button
+          type="button"
+          className={styles.resultButton}
+          onClick={viewResult}
+        >
           Ver palpites
         </button>
       </form>
